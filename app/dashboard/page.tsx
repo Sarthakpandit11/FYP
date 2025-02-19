@@ -69,7 +69,10 @@ export default async function Page({
             <h1 className="font-bold text-3xl mb-8">Popular tour guides</h1>
             <hr className="w-40 border border-red-700 h-1 bg-red-700 " />
           </div>
-
+          <div className="w-full  px-4 py-8 rounded-xl mb-12  justify-start items-start flex space-x-8 ">
+            {guideDataByRating.map((guide) => {
+              return <GuideCard guideData={guide} />;
+            })}
           </div>
           <div className="self-center">
             <a
