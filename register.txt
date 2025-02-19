@@ -1,0 +1,26 @@
+
+
+  
+  await createUser(session.user.email, session.user.name)
+  const isUserRegistered = await GetUser(session.user.email)
+
+  const isGuideRegistered = await GetGuideInfo(isUserRegistered.userid)
+  if(
+    isUserRegistered == undefined || 
+    isUserRegistered == null || 
+    isUserRegistered.phoneno == null || 
+    isUserRegistered.address == null 
+    ){
+      const userObj = {
+        name: isUserRegistered.name,
+        email: isUserRegistered.email
+      }
+    return <UserRegistration userObj = {userObj}/>
+  }
+  if(isUserRegistered.typeid == null ||  isUserRegistered.typeid == undefined){
+    redirect('/select')
+  }
+  console.log(isGuideRegistered);
+  if(isUserRegistered.typeid == 'cc27c14a-0acf-4f4a-a6c9-d45682c144c9' &&  (isGuideRegistered == undefined || isGuideRegistered == null)){
+    redirect('/guideapplication')
+  }
